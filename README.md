@@ -13,7 +13,7 @@ Inside folder:
 > meteor
 
 ## Include
-- initial data generete when project start
+- initial data generate when project start
 - list view / create / edit Product
 - list view / create / edit Customer
 - list view / create / edit Invoice
