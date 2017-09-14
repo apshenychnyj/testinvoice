@@ -1,0 +1,104 @@
+<template name='editInvoice'>
+    {{#autoForm id='invoiceEdit' collection='Invoice' autosave=true type=type doc=doc singleMethodArgument=true meteormethod=invoiceMethod}}
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Company</td>
+        <td>Customer</td>
+      </tr>
+      <tr>
+        <td>
+          Company: {{global 'companyName'}}<br>
+          Phone: {{global 'phone'}}<br>
+          E-mail: {{global 'email'}}<br>
+          Address: {{global 'address'}}
+        </td>
+        <td>
+          <div class='row'>
+            <div class='col-md-1'><a href="#" class='btn btn-primary addNewCustomer' style="margin-top:20px;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+            <div class='col-md-11'>{{>afQuickField name='customer'}}</div>
+          </div>
+             
+        </td>
+      </tr>
+      {{#if $eq type "method-update"}}
+      <tr>
+        <td colspan='2'></td>
+      </tr>
+      <tr>
+        <td colspan='2'>
+            <a href="#" class='btn btn-primary addProductToInv'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a> Products 
+          <table class='table'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Product Name</th>
+                <th>Product price</th>
+                <th class='textCenter'>Quantity</th>
+                <th>Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+                {{#each invoiceProducts}}
+                <tr>
+                  <td><a href="#" class='btn btn-danger btn-xs removeInvProduct'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                  <td>{{getProductName }}</td>
+                  <td>{{toFixed getProductPrice}}</td>
+                  <td style="width:200px;">
+                      <div class='col-md-12'>
+                          <div class="input-group">
+                          <span class="input-group-btn">
+                            <input type='button' id='m{{_id}}' value='-' class='qtyminus btn btn-danger btn-number btnMinus' field='quantity{{_id}}' />
+                          </span>
+                          <input type='number' id="{{_id}}" name='quantity{{_id}}' min='1' max='{{devMax}}' value='{{quantity}}' class='invProductCount form-control' readonly/>
+                          <span class="input-group-btn">
+                              <input type='button' id='p{{_id}}' value='+' min='1' max='{{devMax}}'  class='qtyplus btn btn-success btn-number btnPlus' data-type="plus" field='quantity{{_id}}' />
+                          </span>
+                          </div>
+                      </div>
+                  </td>
+                  <td>{{toFixed price}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+          </table>
+          
+        </td>
+      </tr>
+      <tr>
+          <td width='50%'>{{>afQuickField name='invoiceDiscount'}}</td>
+          <td width='50%'>{{>afQuickField name='invoiceFullPrice' readonly=true}}</td>
+        </tr>
+      {{else}}
+      <tr>
+          <td colspan='2'><h3 class='textCenter'>Select or Create Customer</h3></td>
+      </tr>
+      {{/if}}
+      <tr>
+          <td width='50%'></td>
+          <td width='50%'><a href="{{pathFor route='allInvoices'}}" class='btn btn-success pull-right'>Finish</a></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  {{/autoForm}}
+  
+{{>productInvModal}}
+{{>editCustomer}}
+</template>
+
+<template name='productInvModal'>
+    <div class="modal fade" id='addProductInv' tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">{{modalTitle}}</h4>
+            </div>
+            <div class="modal-body">
+              {{>quickForm id='invoiceProductEdit' collection='InvoiceProduct' doc=doc type=type singleMethodArgument=true meteormethod=productInvMethod}}
+            </div>
+          </div>
+        </div>
+      </div>
+</template>

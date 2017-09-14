@@ -1,0 +1,62 @@
+<template name="layout">
+  {{#if currentUser}}
+  <div class="container-fluid main_container">
+    <div class='row'>
+      <div class='col-md-2'>INVOICES</div>
+      <div class='col-md-10'>
+        {{>breadcrumbs}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left_menu">
+        {{>leftMenu}}
+      </div>
+      <div class="col-md-10 content">
+        {{>yield}}
+      </div>
+    </div>
+  </div>
+  {{else}}
+    {{>signForm}}
+  {{/if}}
+</template>
+
+<template name="signForm">
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-4 col-md-offset-4 singInHight'>
+        <div class='signInForm'>
+          {{> atForm state='signIn'}}
+          <p>Login/Pass for User:</p>
+          <p>testUser@test.com / testTask!1234</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template name="leftMenu">
+  <div class="list-group">
+    <a href="{{pathFor route='allInvoices'}}" class="list-group-item {{isActiveRoute regex='allInvoices|editInvoice'}}">Invoices</a>
+    <a href="{{pathFor route='allCustomers'}}" class="list-group-item {{isActiveRoute regex='allCustomers'}}">Customers</a>
+    <a href="{{pathFor route='allProducts'}}" class="list-group-item {{isActiveRoute regex='allProducts|editProduct'}}">Products</a>
+  </div>
+  <div class="list-group">
+    <a href="#" class="list-group-item logout">Logout</a>
+  </div>
+</template>
+
+<template name="breadcrumbs">
+  <ol class="breadcrumb">
+    {{#each Breadcrumb}}
+      <li class="{{cssClasses}}">
+      {{#if showLink}}
+        <a href="{{url}}" class='bredLink'>{{title}}</a>
+      {{else}}
+        {{title}}
+      {{/if}}
+      </li>
+    {{/each}}
+  </ol>
+</template>

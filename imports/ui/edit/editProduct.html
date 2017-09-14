@@ -1,0 +1,8 @@
+<template name="editProduct">
+  <div class="panel panel-default">
+    <div class="panel-heading">{{panelTitle}}</div>
+    <div class="panel-body">
+      {{>quickForm id='productEdit' collection='Product' type=type doc=doc singleMethodArgument=true meteormethod=productMethod}}
+    </div>
+  </div>
+</template>
