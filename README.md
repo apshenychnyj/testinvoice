@@ -7,7 +7,8 @@ https://testinvoice.herokuapp.com/
 Clone project to local folder
 Inside folder:
 > -- meteor npm install
-  -- meteor
+
+>  -- meteor
 
 ## Include
 - initial data generete when project start
@@ -16,6 +17,8 @@ Inside folder:
 - list view / create / edit Invoice
 
 ## Data for login
+
 > User: testUser@test.com
+
 > pass: testTask!1234
 
