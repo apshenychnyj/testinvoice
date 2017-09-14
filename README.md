@@ -4,11 +4,13 @@
 https://testinvoice.herokuapp.com/
 
 ## Instaling
-Clone project to local folder
-Inside folder:
-> -- meteor npm install
+Clone project to local folder.
 
->  -- meteor
+Inside folder:
+
+> meteor npm install
+
+> meteor
 
 ## Include
 - initial data generete when project start
@@ -20,5 +22,5 @@ Inside folder:
 
 > User: testUser@test.com
  
-  pass: testTask!1234
+>  pass: testTask!1234
 
