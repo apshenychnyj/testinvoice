@@ -19,6 +19,6 @@ Inside folder:
 ## Data for login
 
 > User: testUser@test.com
-
-> pass: testTask!1234
+ 
+  pass: testTask!1234
 
