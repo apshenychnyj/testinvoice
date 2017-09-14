@@ -1,5 +1,9 @@
 /* CSS declarations go here */
 
+.loginInfo {
+	margin:20px;
+}
+
 .main_container {
   margin: 15px;
   /*border: 2px solid  #222d32;
